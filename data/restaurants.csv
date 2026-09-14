@@ -1,0 +1,31 @@
+name,cuisine,budget,location,dietary_tags,description,rating
+Spice Route,indian,mid,downtown,vegetarian;vegan,Modern Indian bistro with rich curries and tandoor specialties.,4.5
+Green Leaf Kitchen,vegan,budget,uptown,vegan;gluten_free,Plant-based comfort food with all dishes free of animal products.,4.3
+Nonna's Table,italian,premium,downtown,vegetarian,Handmade pasta and wood-fired pizza in a cozy dining room.,4.7
+Taco Fiesta,mexican,budget,eastside,gluten_free,Street-style tacos and fresh salsas at a quick casual spot.,4.1
+Sakura Sushi,japanese,premium,downtown,pescatarian,Omakase and classic nigiri served from a sushi counter.,4.8
+Curry House,indian,budget,southside,vegetarian;halal,Fast-casual curries and biryani that is halal certified.,4.0
+Le Petit Bistro,french,premium,downtown,none,Classic French bistro fare including steak frites and coq au vin.,4.6
+Vegan Vibes,vegan,mid,uptown,vegan;gluten_free,Creative vegan small plates and fresh juices.,4.4
+Dragon Wok,chinese,budget,eastside,none,Wok-fired Chinese classics served in generous portions.,3.9
+Mediterraneo,mediterranean,mid,westside,vegetarian;halal,"Mezze platters, grilled meats, and fresh hummus.",4.5
+Burger Barn,american,budget,southside,gluten_free,Classic smash burgers and hand-cut fries.,4.0
+Pho Saigon,vietnamese,budget,eastside,gluten_free,Slow-simmered pho broth and fresh spring rolls.,4.3
+Trattoria Roma,italian,mid,westside,vegetarian,Family-run trattoria serving classic Roman pasta dishes.,4.4
+Halal Grill House,middle_eastern,mid,southside,halal,Charcoal-grilled kebabs and fresh flatbread.,4.2
+Coastal Catch,seafood,premium,downtown,pescatarian,"Fresh daily catch, oysters, and coastal-inspired plates.",4.6
+Plant Power Cafe,vegan,budget,uptown,vegan;gluten_free,Quick-serve vegan bowls and smoothies.,4.0
+Bombay Express,indian,budget,eastside,vegetarian;vegan,Quick-serve thalis and street food classics.,3.8
+Ramen Nights,japanese,budget,downtown,none,Rich tonkotsu and miso ramen bowls served late into the night.,4.4
+The Steakhouse,american,premium,downtown,gluten_free,Dry-aged steaks and classic sides in an upscale setting.,4.7
+Falafel Corner,middle_eastern,budget,westside,vegan;vegetarian,Crispy falafel wraps and fresh tabbouleh.,4.1
+Casa Mexicana,mexican,mid,downtown,vegetarian,"Traditional mole, enchiladas, and fresh guacamole.",4.5
+Golden Dragon,chinese,mid,southside,none,Dim sum brunch and classic Cantonese dishes.,4.3
+Olive Grove,mediterranean,premium,downtown,vegetarian;gluten_free,Elegant Mediterranean tasting menu with local ingredients.,4.6
+Noodle Bar,vietnamese,mid,uptown,gluten_free,Build-your-own pho and rice noodle bowls.,4.2
+Pizza Pronto,italian,budget,eastside,vegetarian,Fast wood-fired pizza by the slice.,4.0
+Kebab Kingdom,middle_eastern,budget,eastside,halal,"Quick-serve kebabs, shawarma, and rice bowls.",4.1
+Blue Ocean Sushi,japanese,mid,westside,pescatarian,Casual sushi rolls and bento boxes.,4.3
+Farmhouse Table,american,mid,uptown,vegetarian;gluten_free,Seasonal farm-to-table plates with a changing daily menu.,4.5
+Saffron Palace,indian,premium,downtown,vegetarian;halal,Upscale Indian dining with tasting menus.,4.7
+Urban Greens,vegan,mid,downtown,vegan;gluten_free,Modern vegan restaurant with globally inspired dishes.,4.4
