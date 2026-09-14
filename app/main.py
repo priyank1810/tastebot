@@ -1,14 +1,14 @@
 import uuid
+from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 from app.chat import get_reply
+from app.config import settings
 from app.db import get_connection
 from app.retrieval import search
-
-app = FastAPI()
 
 _sessions: dict[str, list[dict]] = {}
 _conn = None
@@ -19,6 +19,18 @@ def get_db_connection():
     if _conn is None:
         _conn = get_connection()
     return _conn
+
+
+@asynccontextmanager
+async def lifespan(_app: FastAPI):
+    # Fail fast if ANTHROPIC_API_KEY is missing, per spec Error handling.
+    settings.validate()
+    # Fail fast if Postgres/pgvector is unreachable, per spec Error handling.
+    get_db_connection()
+    yield
+
+
+app = FastAPI(lifespan=lifespan)
 
 
 @app.post("/api/chat")

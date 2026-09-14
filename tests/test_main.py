@@ -1,3 +1,4 @@
+import pytest
 from fastapi.testclient import TestClient
 
 import app.main as main_module
@@ -35,3 +36,12 @@ def test_chat_endpoint_returns_reply_and_candidates(monkeypatch):
     resp2 = client.post("/api/chat", json={"session_id": "s1", "message": "again"})
     body2 = resp2.json()
     assert "history_len=2" in body2["reply"]
+
+
+def test_startup_fails_fast_without_api_key(monkeypatch):
+    monkeypatch.setattr(main_module.settings, "anthropic_api_key", None)
+    monkeypatch.setattr(main_module, "get_db_connection", lambda: None)
+
+    with pytest.raises(RuntimeError, match="ANTHROPIC_API_KEY"):
+        with TestClient(main_module.app):
+            pass
