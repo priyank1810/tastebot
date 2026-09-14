@@ -20,9 +20,13 @@ CREATE TABLE IF NOT EXISTS restaurants (
 
 def get_connection(database_url: str | None = None):
     conn = psycopg2.connect(database_url or settings.database_url)
+    # Autocommit: a connection that runs a single SELECT/INSERT per call
+    # (retrieval, ingestion) should never sit idle-in-transaction holding
+    # locks between requests. Without this, a long-lived connection (e.g.
+    # the FastAPI app's shared _conn) blocks DDL like TRUNCATE indefinitely.
+    conn.autocommit = True
     with conn.cursor() as cur:
         cur.execute("CREATE EXTENSION IF NOT EXISTS vector")
-    conn.commit()
     register_vector(conn)
     return conn
 
