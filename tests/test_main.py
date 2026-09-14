@@ -38,6 +38,23 @@ def test_chat_endpoint_returns_reply_and_candidates(monkeypatch):
     assert "history_len=2" in body2["reply"]
 
 
+def fake_get_reply_raises(history, message, candidates, client=None):
+    raise RuntimeError("simulated Claude API failure")
+
+
+def test_chat_endpoint_falls_back_on_claude_error(monkeypatch):
+    monkeypatch.setattr(main_module, "search", fake_search)
+    monkeypatch.setattr(main_module, "get_reply", fake_get_reply_raises)
+    monkeypatch.setattr(main_module, "get_db_connection", lambda: None)
+    main_module._sessions.clear()
+
+    client = TestClient(main_module.app)
+    resp = client.post("/api/chat", json={"session_id": "s2", "message": "hi"})
+
+    assert resp.status_code == 200
+    assert resp.json()["reply"] == main_module.FALLBACK_REPLY
+
+
 def test_startup_fails_fast_without_api_key(monkeypatch):
     monkeypatch.setattr(main_module.settings, "anthropic_api_key", None)
     monkeypatch.setattr(main_module, "get_db_connection", lambda: None)

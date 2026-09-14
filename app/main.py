@@ -1,3 +1,4 @@
+import logging
 import uuid
 from contextlib import asynccontextmanager
 
@@ -9,6 +10,12 @@ from app.chat import get_reply
 from app.config import settings
 from app.db import get_connection
 from app.retrieval import search
+
+logger = logging.getLogger(__name__)
+
+FALLBACK_REPLY = (
+    "Sorry, I couldn't reach the recommendation service just now. Please try again."
+)
 
 _sessions: dict[str, list[dict]] = {}
 _conn = None
@@ -42,7 +49,11 @@ async def chat_endpoint(request: Request):
 
     conn = get_db_connection()
     candidates = search(conn, message)
-    reply = get_reply(history, message, candidates)
+    try:
+        reply = get_reply(history, message, candidates)
+    except Exception:
+        logger.exception("Claude API call failed for session %s", session_id)
+        reply = FALLBACK_REPLY
 
     history.append({"role": "user", "content": message})
     history.append({"role": "assistant", "content": reply})
