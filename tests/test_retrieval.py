@@ -24,3 +24,5 @@ def test_search_returns_top_six_ordered_by_distance(db_conn, tmp_path):
     assert distances == sorted(distances)
     names = [r.name for r in results]
     assert "Pizza Place" in names[:3] or "Pasta Palace" in names[:3]
+    # rating must be a plain float (JSON-serializable), not a Decimal
+    assert all(isinstance(r.rating, float) for r in results)

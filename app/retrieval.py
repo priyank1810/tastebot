@@ -35,8 +35,9 @@ def search(conn, query: str, top_k: int = 6) -> list[RetrievedRestaurant]:
     return [
         RetrievedRestaurant(
             name=row[0], cuisine=row[1], budget=row[2], location=row[3],
-            dietary_tags=row[4] or [], description=row[5], rating=row[6],
-            distance=row[7],
+            dietary_tags=row[4] or [], description=row[5],
+            rating=float(row[6]) if row[6] is not None else None,
+            distance=float(row[7]),
         )
         for row in rows
     ]
