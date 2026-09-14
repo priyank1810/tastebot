@@ -52,7 +52,9 @@ async def chat_endpoint(request: Request):
     try:
         reply = get_reply(history, message, candidates)
     except Exception:
-        logger.exception("Claude API call failed for session %s", session_id)
+        # %r (not %s) so a crafted session_id containing newlines/control
+        # characters can't forge extra log lines.
+        logger.exception("Claude API call failed for session %r", session_id)
         reply = FALLBACK_REPLY
 
     history.append({"role": "user", "content": message})
