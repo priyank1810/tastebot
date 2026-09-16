@@ -50,3 +50,15 @@ def append_message(conn, session_id: str, role: str, content: str) -> None:
             (session_id, role, content),
         )
     conn.commit()
+
+
+def list_sessions(conn) -> list[dict]:
+    with conn.cursor() as cur:
+        cur.execute(
+            "SELECT id, title, created_at FROM chat_sessions ORDER BY created_at DESC"
+        )
+        rows = cur.fetchall()
+    return [
+        {"id": r[0], "title": r[1], "created_at": r[2].isoformat()}
+        for r in rows
+    ]
