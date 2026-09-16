@@ -1,6 +1,7 @@
 import { ErrorBanner } from './components/Chat/ErrorBanner'
 import { ChatInput } from './components/Chat/ChatInput'
 import { MessageList } from './components/Chat/MessageList'
+import { TypingIndicator } from './components/Chat/TypingIndicator'
 import { MapView } from './components/MapView/MapView'
 import { FilterPanel } from './components/Sidebar/FilterPanel'
 import { SessionList } from './components/Sidebar/SessionList'
@@ -24,6 +25,11 @@ function ChatArea() {
         </button>
       </header>
       <MessageList messages={messages} />
+      {sending && (
+        <div className="px-4 pb-4">
+          <TypingIndicator />
+        </div>
+      )}
       {lastWithCandidates?.candidates && <MapView candidates={lastWithCandidates.candidates} />}
       {error && <ErrorBanner message={error} onRetry={retryLast} />}
       <ChatInput onSend={(text) => sendMessage(text, selected)} disabled={sending} />
