@@ -1,0 +1,12 @@
+name,cuisine,budget,location,dietary_tags,description,rating
+TGB Cafe N Bakery,bakery,mid,vejalpur,vegetarian;non_vegetarian,Cafe and bakery in Vejalpur known for family meal deals and desserts.,
+Bapasitaram Dalwada and Coldrinks,snacks,budget,vejalpur,vegetarian,Dalvada and cold-drinks stall in Vejalpur known for its dal vada.,
+Panchamrut,multi_cuisine,mid,chandlodia,vegetarian;non_vegetarian,Restaurant at Silver Star Mall in Chandlodia.,
+24/7 Fast Food,fast_food,budget,chandlodia,vegetarian;non_vegetarian,Fast-food outlet in Chandlodia.,
+Sharma Food Court,multi_cuisine,budget,nehrunagar,vegetarian;non_vegetarian,Food court near Nehru Nagar Circle serving Mexican Russian and sandwich fast food.,
+Green Leaf Restaurant,multi_cuisine,mid,ranip,vegetarian;non_vegetarian,Restaurant in Ranip.,
+Memento Restaurant And Banquet,multi_cuisine,mid,ranip,vegetarian;non_vegetarian,Restaurant and banquet hall in Ranip.,
+Kshitij Restaurant & Banquet,multi_cuisine,mid,ranip,vegetarian;non_vegetarian,Restaurant and banquet hall in Ranip.,
+Myriad Restaurant And Banquet,multi_cuisine,mid,ranip,vegetarian;non_vegetarian,Restaurant and banquet hall in Ranip.,
+Food Garage,fast_food,budget,ranip,vegetarian;non_vegetarian,Fast-food outlet in Ranip.,
+Nisha's Kitchen,multi_cuisine,budget,ranip,vegetarian;non_vegetarian,Home-style kitchen restaurant in Ranip available for online ordering.,
