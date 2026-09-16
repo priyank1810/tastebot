@@ -63,3 +63,23 @@ def search(
         )
         for row in rows
     ]
+
+
+def get_filter_options(conn) -> dict:
+    with conn.cursor() as cur:
+        cur.execute("SELECT DISTINCT cuisine FROM restaurants ORDER BY cuisine")
+        cuisines = [r[0] for r in cur.fetchall()]
+        cur.execute("SELECT DISTINCT budget FROM restaurants ORDER BY budget")
+        budgets = [r[0] for r in cur.fetchall()]
+        cur.execute("SELECT DISTINCT location FROM restaurants ORDER BY location")
+        locations = [r[0] for r in cur.fetchall()]
+        cur.execute(
+            "SELECT DISTINCT unnest(dietary_tags) AS tag FROM restaurants ORDER BY tag"
+        )
+        dietary_tags = [r[0] for r in cur.fetchall()]
+    return {
+        "cuisine": cuisines,
+        "budget": budgets,
+        "location": locations,
+        "dietary_tags": dietary_tags,
+    }

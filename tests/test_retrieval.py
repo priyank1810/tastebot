@@ -1,5 +1,5 @@
 from app.ingest import ingest_csv
-from app.retrieval import search
+from app.retrieval import get_filter_options, search
 
 CSV_CONTENT = """name,cuisine,budget,location,dietary_tags,description,rating
 Pasta Palace,italian,mid,downtown,vegetarian,Fresh handmade pasta and pizza,4.5
@@ -71,3 +71,19 @@ def test_search_with_no_filters_arg_behaves_as_before(db_conn, tmp_path):
     results = search(db_conn, "cheap italian pizza", top_k=6)
 
     assert len(results) == 6
+
+
+def test_get_filter_options_returns_distinct_values(db_conn, tmp_path):
+    csv_path = tmp_path / "sample.csv"
+    csv_path.write_text(CSV_CONTENT)
+    ingest_csv(str(csv_path), conn=db_conn)
+
+    options = get_filter_options(db_conn)
+
+    assert set(options.keys()) == {"cuisine", "budget", "location", "dietary_tags"}
+    assert "italian" in options["cuisine"]
+    assert "mexican" in options["cuisine"]
+    assert "mid" in options["budget"]
+    assert "downtown" in options["location"]
+    assert "vegetarian" in options["dietary_tags"]
+    assert "vegan" in options["dietary_tags"]
