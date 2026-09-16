@@ -167,10 +167,10 @@ def test_chat_endpoint_includes_lat_lon_in_candidates(monkeypatch, fake_store):
 
 
 def test_startup_fails_fast_without_api_key(monkeypatch):
-    monkeypatch.setattr(main_module.settings, "azure_openai_api_key", None)
+    monkeypatch.setattr(main_module.settings, "anthropic_api_key", None)
     monkeypatch.setattr(main_module, "get_db_connection", lambda: None)
     monkeypatch.setattr(main_module, "init_session_schema", lambda conn: None)
 
-    with pytest.raises(RuntimeError, match="AZURE_OPENAI_API_KEY"):
+    with pytest.raises(RuntimeError, match="ANTHROPIC_API_KEY"):
         with TestClient(main_module.app):
             pass
