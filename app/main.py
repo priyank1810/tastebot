@@ -10,6 +10,13 @@ from app.chat import get_reply
 from app.config import settings
 from app.db import get_connection
 from app.retrieval import search
+from app.sessions import (
+    append_message,
+    ensure_session,
+    get_messages,
+    init_session_schema,
+    list_sessions,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -17,7 +24,6 @@ FALLBACK_REPLY = (
     "Sorry, I couldn't reach the recommendation service just now. Please try again."
 )
 
-_sessions: dict[str, list[dict]] = {}
 _conn = None
 
 
@@ -30,10 +36,11 @@ def get_db_connection():
 
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
-    # Fail fast if ANTHROPIC_API_KEY is missing, per spec Error handling.
+    # Fail fast if Azure OpenAI env vars are missing, per spec Error handling.
     settings.validate()
     # Fail fast if Postgres/pgvector is unreachable, per spec Error handling.
-    get_db_connection()
+    conn = get_db_connection()
+    init_session_schema(conn)
     yield
 
 
@@ -45,20 +52,21 @@ async def chat_endpoint(request: Request):
     body = await request.json()
     session_id = body.get("session_id") or str(uuid.uuid4())
     message = body["message"]
-    history = _sessions.setdefault(session_id, [])
 
     conn = get_db_connection()
+    ensure_session(conn, session_id)
+    history = get_messages(conn, session_id)
     candidates = search(conn, message)
     try:
         reply = get_reply(history, message, candidates)
     except Exception:
         # %r (not %s) so a crafted session_id containing newlines/control
         # characters can't forge extra log lines.
-        logger.exception("Claude API call failed for session %r", session_id)
+        logger.exception("Azure OpenAI call failed for session %r", session_id)
         reply = FALLBACK_REPLY
 
-    history.append({"role": "user", "content": message})
-    history.append({"role": "assistant", "content": reply})
+    append_message(conn, session_id, "user", message)
+    append_message(conn, session_id, "assistant", reply)
 
     return JSONResponse({
         "session_id": session_id,

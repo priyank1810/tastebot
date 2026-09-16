@@ -5,7 +5,7 @@ import app.main as main_module
 from app.retrieval import RetrievedRestaurant
 
 
-def fake_search(conn, message, top_k=6):
+def fake_search(conn, message, top_k=6, filters=None):
     return [
         RetrievedRestaurant(
             name="Pasta Palace", cuisine="italian", budget="mid",
@@ -19,11 +19,42 @@ def fake_get_reply(history, message, candidates, client=None):
     return f"reply to: {message} (history_len={len(history)})"
 
 
-def test_chat_endpoint_returns_reply_and_candidates(monkeypatch):
+class FakeSessionStore:
+    def __init__(self):
+        self.messages: dict[str, list[dict]] = {}
+        self.sessions: list[dict] = []
+
+    def ensure_session(self, conn, session_id):
+        if session_id not in self.messages:
+            self.messages[session_id] = []
+            self.sessions.insert(
+                0, {"id": session_id, "title": None, "created_at": "2026-01-01T00:00:00"}
+            )
+
+    def get_messages(self, conn, session_id):
+        return list(self.messages.get(session_id, []))
+
+    def append_message(self, conn, session_id, role, content):
+        self.messages.setdefault(session_id, []).append({"role": role, "content": content})
+
+    def list_sessions(self, conn):
+        return list(self.sessions)
+
+
+@pytest.fixture
+def fake_store(monkeypatch):
+    store = FakeSessionStore()
+    monkeypatch.setattr(main_module, "ensure_session", store.ensure_session)
+    monkeypatch.setattr(main_module, "get_messages", store.get_messages)
+    monkeypatch.setattr(main_module, "append_message", store.append_message)
+    monkeypatch.setattr(main_module, "list_sessions", store.list_sessions)
+    monkeypatch.setattr(main_module, "get_db_connection", lambda: None)
+    return store
+
+
+def test_chat_endpoint_returns_reply_and_candidates(monkeypatch, fake_store):
     monkeypatch.setattr(main_module, "search", fake_search)
     monkeypatch.setattr(main_module, "get_reply", fake_get_reply)
-    monkeypatch.setattr(main_module, "get_db_connection", lambda: None)
-    main_module._sessions.clear()
 
     client = TestClient(main_module.app)
 
@@ -42,11 +73,9 @@ def fake_get_reply_raises(history, message, candidates, client=None):
     raise RuntimeError("simulated Claude API failure")
 
 
-def test_chat_endpoint_falls_back_on_claude_error(monkeypatch):
+def test_chat_endpoint_falls_back_on_claude_error(monkeypatch, fake_store):
     monkeypatch.setattr(main_module, "search", fake_search)
     monkeypatch.setattr(main_module, "get_reply", fake_get_reply_raises)
-    monkeypatch.setattr(main_module, "get_db_connection", lambda: None)
-    main_module._sessions.clear()
 
     client = TestClient(main_module.app)
     resp = client.post("/api/chat", json={"session_id": "s2", "message": "hi"})
@@ -56,9 +85,10 @@ def test_chat_endpoint_falls_back_on_claude_error(monkeypatch):
 
 
 def test_startup_fails_fast_without_api_key(monkeypatch):
-    monkeypatch.setattr(main_module.settings, "anthropic_api_key", None)
+    monkeypatch.setattr(main_module.settings, "azure_openai_api_key", None)
     monkeypatch.setattr(main_module, "get_db_connection", lambda: None)
+    monkeypatch.setattr(main_module, "init_session_schema", lambda conn: None)
 
-    with pytest.raises(RuntimeError, match="ANTHROPIC_API_KEY"):
+    with pytest.raises(RuntimeError, match="AZURE_OPENAI_API_KEY"):
         with TestClient(main_module.app):
             pass
