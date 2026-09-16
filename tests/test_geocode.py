@@ -1,4 +1,5 @@
 from app import geocode
+from app.geocode import _build_queries
 from app.ingest import ingest_csv
 
 CSV_CONTENT = """name,cuisine,budget,location,dietary_tags,description,rating
@@ -51,3 +52,38 @@ def test_run_skips_already_geocoded_rows(db_conn, tmp_path, monkeypatch):
 
     assert result == {"geocoded": 0, "failed": 0}
     assert calls == []
+
+
+def test_build_queries_converts_underscores_to_spaces():
+    queries = _build_queries("Some Place", "raipur_darwaja")
+    assert queries[0] == "Some Place, raipur darwaja, Ahmedabad, India"
+
+
+def test_build_queries_includes_area_only_fallback():
+    queries = _build_queries("Some Place", "khokhra")
+    assert queries[-1] == "khokhra, Ahmedabad, India"
+
+
+def test_geocode_falls_back_to_area_only_query_when_name_query_fails(monkeypatch):
+    monkeypatch.setattr(geocode, "RATE_LIMIT_SECONDS", 0)
+    calls = []
+
+    def fake_fetch(query):
+        calls.append(query)
+        if query == "khokhra, Ahmedabad, India":
+            return [{"lat": "23.0", "lon": "72.5"}]
+        return None
+
+    monkeypatch.setattr(geocode, "_fetch", fake_fetch)
+
+    result = geocode.geocode("Unknown Diner", "khokhra")
+
+    assert result == (23.0, 72.5)
+    assert calls == ["Unknown Diner, khokhra, Ahmedabad, India", "khokhra, Ahmedabad, India"]
+
+
+def test_geocode_returns_none_when_all_queries_fail(monkeypatch):
+    monkeypatch.setattr(geocode, "RATE_LIMIT_SECONDS", 0)
+    monkeypatch.setattr(geocode, "_fetch", lambda query: None)
+
+    assert geocode.geocode("Unknown Diner", "khokhra") is None
