@@ -84,4 +84,16 @@ async def chat_endpoint(request: Request):
     })
 
 
+@app.get("/api/sessions")
+async def sessions_endpoint():
+    conn = get_db_connection()
+    return JSONResponse(list_sessions(conn))
+
+
+@app.get("/api/sessions/{session_id}")
+async def session_messages_endpoint(session_id: str):
+    conn = get_db_connection()
+    return JSONResponse(get_messages(conn, session_id))
+
+
 app.mount("/", StaticFiles(directory="static", html=True), name="static")

@@ -84,6 +84,32 @@ def test_chat_endpoint_falls_back_on_claude_error(monkeypatch, fake_store):
     assert resp.json()["reply"] == main_module.FALLBACK_REPLY
 
 
+def test_sessions_endpoint_lists_sessions(monkeypatch, fake_store):
+    monkeypatch.setattr(main_module, "search", fake_search)
+    monkeypatch.setattr(main_module, "get_reply", fake_get_reply)
+
+    client = TestClient(main_module.app)
+    client.post("/api/chat", json={"session_id": "s3", "message": "hi"})
+
+    resp = client.get("/api/sessions")
+    assert resp.status_code == 200
+    ids = [s["id"] for s in resp.json()]
+    assert "s3" in ids
+
+
+def test_session_messages_endpoint_returns_history(monkeypatch, fake_store):
+    monkeypatch.setattr(main_module, "search", fake_search)
+    monkeypatch.setattr(main_module, "get_reply", fake_get_reply)
+
+    client = TestClient(main_module.app)
+    client.post("/api/chat", json={"session_id": "s4", "message": "hi"})
+
+    resp = client.get("/api/sessions/s4")
+    assert resp.status_code == 200
+    roles = [m["role"] for m in resp.json()]
+    assert roles == ["user", "assistant"]
+
+
 def test_startup_fails_fast_without_api_key(monkeypatch):
     monkeypatch.setattr(main_module.settings, "azure_openai_api_key", None)
     monkeypatch.setattr(main_module, "get_db_connection", lambda: None)
