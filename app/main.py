@@ -106,4 +106,4 @@ async def session_messages_endpoint(session_id: str):
     return JSONResponse(get_messages(conn, session_id))
 
 
-app.mount("/", StaticFiles(directory="static", html=True), name="static")
+app.mount("/", StaticFiles(directory="static/dist", html=True), name="static")

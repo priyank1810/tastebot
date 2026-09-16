@@ -5,3 +5,7 @@ __pycache__/
 .pytest_cache/
 node_modules/
 .env
+static/dist/
+static-src/*.tsbuildinfo
+static-src/vite.config.js
+static-src/vite.config.d.ts
