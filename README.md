@@ -12,13 +12,26 @@ for the design.
 3. `python -m venv .venv && source .venv/bin/activate`
 4. `pip install -r requirements.txt`
 5. `python -m app.ingest data/restaurants.csv` — loads and embeds the sample catalog.
-6. `uvicorn app.main:app --reload`
-7. Open `http://localhost:8000` in a browser.
+6. `cd static-src && npm install && npm run build && cd ..` — builds the frontend
+   into `static/dist/`, which `uvicorn` serves. Skip this if `static/dist/` already
+   exists.
+7. `uvicorn app.main:app --reload`
+8. Open `http://localhost:8000` in a browser.
+
+## Frontend development
+
+The chat UI lives in `static-src/` (React + Vite + TypeScript) and builds
+to `static/dist/`, which the FastAPI app serves directly.
+
+- One-time setup: `cd static-src && npm install`
+- Development (hot reload, proxies `/api/*` to `:8000`): `cd static-src && npm run dev`, then open the Vite dev server URL it prints
+- Production build (required before running `uvicorn` if `static/dist/` doesn't exist yet): `cd static-src && npm run build`
+- Frontend tests: `cd static-src && npm run test`
 
 ## Tests
 
 - Python: `pytest` (requires `docker compose up -d` running for DB-backed tests)
-- Frontend: `node --test tests/test_chat_js.mjs`
+- Frontend: `cd static-src && npm run test`
 
 ## Manual smoke test
 
