@@ -87,3 +87,28 @@ def test_get_filter_options_returns_distinct_values(db_conn, tmp_path):
     assert "downtown" in options["location"]
     assert "vegetarian" in options["dietary_tags"]
     assert "vegan" in options["dietary_tags"]
+
+
+def test_search_returns_lat_lon_when_present(db_conn, tmp_path):
+    csv_path = tmp_path / "sample.csv"
+    csv_path.write_text(CSV_CONTENT)
+    ingest_csv(str(csv_path), conn=db_conn)
+    with db_conn.cursor() as cur:
+        cur.execute(
+            "ALTER TABLE restaurants ADD COLUMN IF NOT EXISTS lat DOUBLE PRECISION"
+        )
+        cur.execute(
+            "ALTER TABLE restaurants ADD COLUMN IF NOT EXISTS lon DOUBLE PRECISION"
+        )
+        cur.execute(
+            "UPDATE restaurants SET lat = 23.03, lon = 72.56 WHERE name = 'Pasta Palace'"
+        )
+
+    results = search(db_conn, "cheap italian pizza", top_k=6)
+
+    by_name = {r.name: r for r in results}
+    assert by_name["Pasta Palace"].lat == 23.03
+    assert by_name["Pasta Palace"].lon == 72.56
+    other = [r for r in results if r.name != "Pasta Palace"][0]
+    assert other.lat is None
+    assert other.lon is None

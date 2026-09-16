@@ -144,6 +144,28 @@ def test_filters_options_endpoint(monkeypatch, fake_store):
     }
 
 
+def test_chat_endpoint_includes_lat_lon_in_candidates(monkeypatch, fake_store):
+    def fake_search_with_coords(conn, message, top_k=6, filters=None):
+        return [
+            RetrievedRestaurant(
+                name="Pasta Palace", cuisine="italian", budget="mid",
+                location="downtown", dietary_tags=["vegetarian"],
+                description="Fresh pasta", rating=4.5, distance=0.1,
+                lat=23.03, lon=72.56,
+            ),
+        ]
+
+    monkeypatch.setattr(main_module, "search", fake_search_with_coords)
+    monkeypatch.setattr(main_module, "get_reply", fake_get_reply)
+
+    client = TestClient(main_module.app)
+    resp = client.post("/api/chat", json={"session_id": "s6", "message": "hi"})
+
+    candidate = resp.json()["candidates"][0]
+    assert candidate["lat"] == 23.03
+    assert candidate["lon"] == 72.56
+
+
 def test_startup_fails_fast_without_api_key(monkeypatch):
     monkeypatch.setattr(main_module.settings, "azure_openai_api_key", None)
     monkeypatch.setattr(main_module, "get_db_connection", lambda: None)

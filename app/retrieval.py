@@ -15,6 +15,8 @@ class RetrievedRestaurant:
     description: str
     rating: float | None
     distance: float
+    lat: float | None = None
+    lon: float | None = None
 
 
 def search(
@@ -44,7 +46,7 @@ def search(
         cur.execute(
             f"""
             SELECT name, cuisine, budget, location, dietary_tags, description, rating,
-                   embedding <=> %s AS distance
+                   embedding <=> %s AS distance, lat, lon
             FROM restaurants
             {where_sql}
             ORDER BY embedding <=> %s
@@ -60,6 +62,7 @@ def search(
             dietary_tags=row[4] or [], description=row[5],
             rating=float(row[6]) if row[6] is not None else None,
             distance=float(row[7]),
+            lat=row[8], lon=row[9],
         )
         for row in rows
     ]

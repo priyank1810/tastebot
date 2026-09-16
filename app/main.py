@@ -80,6 +80,8 @@ async def chat_endpoint(request: Request):
                 "budget": c.budget,
                 "location": c.location,
                 "rating": c.rating,
+                "lat": c.lat,
+                "lon": c.lon,
             }
             for c in candidates
         ],
