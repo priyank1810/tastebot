@@ -17,18 +17,40 @@ class RetrievedRestaurant:
     distance: float
 
 
-def search(conn, query: str, top_k: int = 6) -> list[RetrievedRestaurant]:
+def search(
+    conn, query: str, top_k: int = 6, filters: dict | None = None
+) -> list[RetrievedRestaurant]:
+    filters = filters or {}
     query_vector = Vector(embed(query)).to_numpy()
+
+    where_clauses = []
+    where_params = []
+    if filters.get("cuisine"):
+        where_clauses.append("cuisine = ANY(%s)")
+        where_params.append(filters["cuisine"])
+    if filters.get("budget"):
+        where_clauses.append("budget = ANY(%s)")
+        where_params.append(filters["budget"])
+    if filters.get("location"):
+        where_clauses.append("location = ANY(%s)")
+        where_params.append(filters["location"])
+    if filters.get("dietary_tags"):
+        where_clauses.append("dietary_tags && %s")
+        where_params.append(filters["dietary_tags"])
+
+    where_sql = f"WHERE {' AND '.join(where_clauses)}" if where_clauses else ""
+
     with conn.cursor() as cur:
         cur.execute(
-            """
+            f"""
             SELECT name, cuisine, budget, location, dietary_tags, description, rating,
                    embedding <=> %s AS distance
             FROM restaurants
+            {where_sql}
             ORDER BY embedding <=> %s
             LIMIT %s
             """,
-            (query_vector, query_vector, top_k),
+            [query_vector, *where_params, query_vector, top_k],
         )
         rows = cur.fetchall()
 
