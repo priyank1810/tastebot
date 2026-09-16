@@ -1,0 +1,22 @@
+name,cuisine,budget,location,dietary_tags,description,rating
+Rajwadu,gujarati,mid,sg_highway,vegetarian,Village-themed thali restaurant serving unlimited traditional Gujarati fare in an open-air rustic setting.,4.4
+Agashiye,gujarati,premium,lal_darwaza,vegetarian,Heritage terrace restaurant inside House of MG serving refined Gujarati thalis with attentive service.,4.6
+Vishalla,gujarati,mid,vasna,vegetarian,Rustic village-style dining with traditional Gujarati thalis folk performances and earthen decor.,4.3
+Yanki Sizzlerr,continental,budget,navrangpura,vegetarian,Popular sizzler joint serving generous veg sizzlers and shakes in a lively casual setting.,4.2
+Jassi De Parathe,punjabi,budget,navrangpura,vegetarian,All-veg Punjabi eatery known for stuffed parathas chole and lassi.,4.1
+Patang Re-Evolve,north_indian,premium,lal_darwaza,vegetarian;non_vegetarian,Revolving rooftop fine-dining restaurant with panoramic city views and North Indian specialties.,4.5
+Campanella,italian,premium,ambli,vegetarian;non_vegetarian,Rooftop cafe known for Neapolitan pizza arancini and a relaxed European-style patio.,4.5
+The Grand Thakar,gujarati,mid,sg_highway,vegetarian,Kathiyawadi-style unlimited thali restaurant with spicy home-style Saurashtrian dishes.,4.3
+Upri Manzil,multi_cuisine,mid,vastrapur,vegetarian;non_vegetarian,Rooftop restaurant opposite Ahmedabad One Mall serving North Indian Italian and continental dishes.,4.2
+Sardar Centre,multi_cuisine,mid,vastrapur,vegetarian;non_vegetarian,Popular multi-cuisine restaurant known for its candle-light dinner ambience.,4.4
+Royal Punjab Paratha,punjabi,budget,cg_road,vegetarian,Casual eatery specializing in stuffed parathas and Patiala lassi.,4.0
+Udipi Cafe,south_indian,budget,navrangpura,vegetarian,Long-running South Indian cafe known for crispy dosas medu wada and filter coffee.,4.3
+Radhika's Authentic South Indian Food,south_indian,budget,satellite,vegetarian,Popular South Indian chain serving dosas idlis and traditional filter coffee.,4.2
+Manek Chowk Night Eatery,street_food,budget,manek_chowk,vegetarian;non_vegetarian,Iconic night-time street food market in the old city serving pav bhaji dosa and kulfi.,4.1
+@Nine,multi_cuisine,premium,sg_highway,vegetarian;non_vegetarian,Hotel rooftop restaurant at The Fern with a varied multi-cuisine menu and skyline views.,4.3
+Riverfront Grill,continental,premium,riverfront,vegetarian;non_vegetarian,Grill-focused restaurant inside Lemon Tree Premier overlooking the Sabarmati Riverfront.,4.4
+Sphere Lounge,multi_cuisine,premium,sg_highway,vegetarian;non_vegetarian,Rotating rooftop lounge on the 13th floor of Hotel Ramada with expansive city views.,4.2
+Veranda,continental,premium,satellite,vegetarian;non_vegetarian,Open-balcony bar and grill with live music known for pasta and grilled starters.,4.3
+DosBros Fresh Mexican Grill,mexican,budget,thaltej,vegetarian;non_vegetarian,Build-your-own Mexican bowls burritos and tacos with fresh grilled fillings.,4.2
+Tomato's,continental,mid,thaltej,vegetarian;vegan;gluten_free,American-Italian-Mediterranean menu with vegan and gluten-free options on every dish.,4.3
+Lollo Rosso,multi_cuisine,mid,bodakdev,vegetarian;vegan,Trendy multi-cuisine cafe serving global bowls dim sum sushi and vegan platters.,4.4

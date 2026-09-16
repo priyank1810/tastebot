@@ -1,0 +1,13 @@
+name,cuisine,budget,location,dietary_tags,description,rating
+Mrs Mage,continental,premium,vastrapur,vegetarian;non_vegetarian,Fine-dining restaurant at Hyatt Ahmedabad in Vastrapur serving continental modern Indian and Arabian cuisine.,
+Northeast Kitchen,chinese,mid,vastrapur,vegetarian;non_vegetarian,Chinese and South Indian restaurant in Vastrapur known for seafood and street-food style dishes.,
+Rotlo,gujarati,mid,vastrapur,vegetarian,Authentic Gujarati thali restaurant near Vastrapur Lake.,
+Kaffa Cafe,cafe,mid,iim_road,vegetarian;non_vegetarian,Coffee-focused cafe on IIM Road known for handcrafted coffees and freshly baked goodies.,
+Turquoise Villa,cafe,mid,iim_road,vegetarian;non_vegetarian,All-day breakfast cafe on IIM Road with chic interiors and an extensive menu.,
+So Seoul,korean,mid,iim_road,vegetarian;non_vegetarian,Korean restaurant on IIM Road known for ramyeon and Korean street food.,
+Southern Stories,south_indian,budget,iim_road,vegetarian,South Indian restaurant on IIM Road serving dosa idli and vada with modern fusion twists.,
+Umami by Curries,asian,mid,iim_road,vegetarian;non_vegetarian,Asian-Indian fusion restaurant on IIM Road in an upscale ambience.,
+Veranda Rooftop Restro Cafe,cafe,mid,iim_road,vegetarian;non_vegetarian,Rooftop terrace cafe on IIM Road with city views and a bar.,
+Saffron Restaurant,multi_cuisine,mid,navrangpura,vegetarian;non_vegetarian,North Indian and Chinese restaurant near Jalaram Railway Crossing in Navrangpura.,
+Bellasen Bistro,multi_cuisine,mid,bodakdev,vegetarian;non_vegetarian,North Indian Chinese and Continental bistro on Sarkhej-Gandhinagar Highway in Bodakdev.,
+Xia Rooftop Bistro,multi_cuisine,premium,bodakdev,vegetarian;non_vegetarian,Rooftop bistro atop the Salister building in Bodakdev billed as Ahmedabad's highest rooftop restaurant.,
