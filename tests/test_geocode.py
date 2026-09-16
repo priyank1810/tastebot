@@ -87,3 +87,14 @@ def test_geocode_returns_none_when_all_queries_fail(monkeypatch):
     monkeypatch.setattr(geocode, "_fetch", lambda query: None)
 
     assert geocode.geocode("Unknown Diner", "khokhra") is None
+
+
+def test_build_queries_uses_known_area_aliases():
+    queries = _build_queries("Some Place", "lal_darwaza")
+    assert "Lal Darwaja, Gujarat, India" in queries
+
+    queries = _build_queries("Some Place", "vaishnodevi_circle")
+    assert "Vaishno Devi Circle, Ahmedabad, India" in queries
+
+    queries = _build_queries("Some Place", "zundal")
+    assert "Zundal, Gandhinagar, India" in queries

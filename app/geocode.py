@@ -9,13 +9,24 @@ NOMINATIM_URL = "https://nominatim.openstreetmap.org/search"
 USER_AGENT = "restaurant-rag-chatbot/1.0 (internal tool, not for redistribution)"
 RATE_LIMIT_SECONDS = 1.1
 
+# Some location tags don't match Nominatim's spelling or administrative
+# boundary for that area, so the plain "{area}, Ahmedabad, India" fallback
+# finds nothing even though the place exists in OSM under a different name.
+AREA_ALIASES = {
+    "lal_darwaza": "Lal Darwaja, Gujarat, India",
+    "vaishnodevi_circle": "Vaishno Devi Circle, Ahmedabad, India",
+    "zundal": "Zundal, Gandhinagar, India",
+}
+
 
 def _build_queries(name: str, location: str) -> list[str]:
     area = location.replace("_", " ")
-    return [
-        f"{name}, {area}, Ahmedabad, India",
-        f"{area}, Ahmedabad, India",
-    ]
+    queries = [f"{name}, {area}, Ahmedabad, India"]
+    if location in AREA_ALIASES:
+        queries.append(AREA_ALIASES[location])
+    else:
+        queries.append(f"{area}, Ahmedabad, India")
+    return queries
 
 
 def _fetch(query: str) -> list[dict] | None:
