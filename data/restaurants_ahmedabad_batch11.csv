@@ -1,0 +1,10 @@
+name,cuisine,budget,location,dietary_tags,description,rating
+Sakura,multi_cuisine,mid,sarkhej,vegetarian;non_vegetarian,Restaurant in Sarkhej West Ahmedabad.,
+Dukhi Restaurant,gujarati,budget,sarkhej,vegetarian,Gujarati thali restaurant in Sarkhej.,
+Sigdi Restaurant,multi_cuisine,mid,sarkhej,vegetarian;non_vegetarian,Restaurant on Sarkhej-Sanand Road serving North Indian Chinese and Mughlai dishes.,3.8
+Amrutfal Hotel & Restaurant,multi_cuisine,budget,sarkhej,vegetarian;non_vegetarian,Hotel and restaurant in Sarkhej.,
+Hotel Safar & Restaurant,multi_cuisine,budget,sarkhej,vegetarian;non_vegetarian,Hotel and restaurant in Sarkhej.,
+Silver Food,multi_cuisine,budget,sarkhej,vegetarian;non_vegetarian,Restaurant in Sarkhej.,
+Shree Rasavat Restaurant,north_indian,mid,thaltej,vegetarian;non_vegetarian,Restaurant in Thaltej serving Chinese North Indian and Rajasthani dishes.,3.8
+Sambar Cafe,south_indian,mid,multiple_locations,vegetarian,South Indian cafe chain that started in Ghuma with further outlets in Bodakdev Law Garden and Bopal.,5.0
+Jalaram Khichdi Restaurant,gujarati,budget,ambli,vegetarian,Khichdi-focused Gujarati restaurant on Bopal-Ghuma Road in Ambli.,

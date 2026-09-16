@@ -1,0 +1,17 @@
+name,cuisine,budget,location,dietary_tags,description,rating
+Diamond Restaurant,street_food,budget,rakhial,vegetarian;non_vegetarian,Casual street-food style restaurant opposite Usha Cinema in Gomtipur near Rakhial.,
+Diamond Fry Centre,street_food,budget,rakhial,vegetarian;non_vegetarian,Fry-food joint next to Diamond Restaurant in Gomtipur near Rakhial.,
+Vishal Vadapav,street_food,budget,saraspur,vegetarian,Vada pav and street-snacks stall in Saraspur.,
+Hocco Eatery,fast_food,mid,nikol,vegetarian;non_vegetarian,Fast-food outlet in Nikol serving pizza sandwiches burgers and North Indian dishes.,4.1
+Eatry Zone,street_food,budget,nikol,vegetarian,Street-food outlet in Nikol known for vada pav and sandwiches.,4.3
+Hotel Ronak,multi_cuisine,mid,bapunagar,vegetarian;non_vegetarian,Restaurant in Bapunagar.,
+Vegland Hotel,gujarati,budget,bapunagar,vegetarian,Pure-vegetarian restaurant in Bapunagar.,
+Hotel Noor Mahal,mughlai,mid,bapunagar,non_vegetarian,Mughlai restaurant in Bapunagar.,
+Chetana Hotel,gujarati,budget,bapunagar,vegetarian,Gujarati restaurant in Bapunagar.,
+Hotel Unique,multi_cuisine,mid,bapunagar,vegetarian;non_vegetarian,Restaurant in Bapunagar.,
+Bhagyoday,multi_cuisine,mid,bapunagar,vegetarian;non_vegetarian,Restaurant on NH 8 in Bapunagar serving Indian Chinese Continental and Punjabi thali.,
+Baba Ramdev Dhaba,north_indian,budget,vastral,vegetarian;non_vegetarian,Dhaba on SP Ring Road in Ramol area of Vastral.,
+Royal Mezban,mughlai,mid,vastral,non_vegetarian,Restaurant on Ramol Road in Vastral.,
+VIP Restaurant,multi_cuisine,mid,vastral,vegetarian;non_vegetarian,Restaurant near Ramol Toll Tax in Vastral serving North Indian Mughlai Chinese and street food.,
+The Lio' Pizza,pizza,budget,amraiwadi,vegetarian;non_vegetarian,Pizza outlet at CTM Cross Road in Amraiwadi.,
+Pizzur,pizza,budget,amraiwadi,vegetarian;non_vegetarian,Pizza outlet at CTM Cross Road in Amraiwadi.,

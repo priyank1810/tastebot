@@ -1,0 +1,18 @@
+name,cuisine,budget,location,dietary_tags,description,rating
+Kutub Chicken Dana,street_food,budget,kalupur,non_vegetarian,Roadside chicken stall in Bhatiyar Gali known for chicken handi and chicken biryani.,
+Akbari Hotel,mughlai,budget,bhadra,non_vegetarian,Non-vegetarian eatery near Lal Darwaja serving since 1998 known for chicken and mutton dishes.,4.0
+Zamzam Hotel,mughlai,budget,kalupur,non_vegetarian,Old-city eatery near Bhatiyar Gali known for butter chicken and fried snacks.,
+Bana Bhatiyar Khana,mughlai,budget,kalupur,non_vegetarian,Non-vegetarian eatery in Bhatiyar Gali known for chicken malai tikka and bheja.,
+Noora Barahandi,mughlai,budget,kalupur,non_vegetarian,Non-vegetarian eatery near Bhatiyar Gali in Kalupur.,
+Rafik Fry Center,street_food,budget,kalupur,non_vegetarian,Fry-focused non-vegetarian stall near Bhatiyar Gali in Kalupur.,
+Banna Fry Center,street_food,budget,kalupur,non_vegetarian,Fry-focused non-vegetarian stall near Bhatiyar Gali in Kalupur.,
+Hotel Sagar,multi_cuisine,budget,kalupur,vegetarian;non_vegetarian,Restaurant near Kalupur Railway Station.,
+Mansuri Halwa House,sweets,budget,astodia,vegetarian,Halwa shop since 1962 known for kaju magaj halwa near Astodia and Teen Darwaza.,
+Astodia Jalebi & Dalvada,snacks,budget,astodia,vegetarian,Shop in Astodia known for mung-dal jalebi and dalvada.,
+Astodia Bhajiya House,street_food,budget,astodia,vegetarian,Longtime family stall in Astodia serving faluda shakes juices bhajiya and sandwiches.,
+Astodia Juice Corner,cafe,budget,astodia,vegetarian,Juice and falooda stall in Astodia known for rose and kesar falooda.,
+Bastiram Kulfi,ice_cream,budget,manek_chowk,vegetarian,Kulfi stall at Manek Chowk since 1947 serving malai kesar-pista and mango kulfi.,
+Balan Dosa,south_indian,budget,manek_chowk,vegetarian,Street dosa stall at Manek Chowk known for ghotala dosa and gwalior dosa.,
+Taj Sharbat,snacks,budget,dariyapur,vegetarian,Sharbat and cold-drink shop in Dariyapur on Relief Road with over 70 flavours since 1955.,4.3
+City Spice Restaurant,multi_cuisine,mid,shahibaug,vegetarian,Pure-vegetarian restaurant on Shahibaug Road serving Chinese continental and North Indian food.,
+Revel Restaurant,multi_cuisine,mid,shahibaug,vegetarian;non_vegetarian,Multi-cuisine restaurant at Elysian Residency on Shahibaug Road near Namaste Circle.,
