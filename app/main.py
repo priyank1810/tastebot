@@ -8,7 +8,7 @@ from fastapi.staticfiles import StaticFiles
 
 from app.chat import get_reply
 from app.config import settings
-from app.db import get_connection
+from app.db import get_connection, init_geocoding_schema
 from app.retrieval import get_filter_options, search
 from app.sessions import (
     append_message,
@@ -41,6 +41,7 @@ async def lifespan(_app: FastAPI):
     # Fail fast if Postgres/pgvector is unreachable, per spec Error handling.
     conn = get_db_connection()
     init_session_schema(conn)
+    init_geocoding_schema(conn)
     yield
 
 

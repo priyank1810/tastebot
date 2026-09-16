@@ -35,3 +35,10 @@ def init_schema(conn) -> None:
     with conn.cursor() as cur:
         cur.execute(TABLE_SQL)
     conn.commit()
+
+
+def init_geocoding_schema(conn) -> None:
+    with conn.cursor() as cur:
+        cur.execute("ALTER TABLE restaurants ADD COLUMN IF NOT EXISTS lat DOUBLE PRECISION")
+        cur.execute("ALTER TABLE restaurants ADD COLUMN IF NOT EXISTS lon DOUBLE PRECISION")
+    conn.commit()
