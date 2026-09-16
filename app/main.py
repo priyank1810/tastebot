@@ -9,7 +9,7 @@ from fastapi.staticfiles import StaticFiles
 from app.chat import get_reply
 from app.config import settings
 from app.db import get_connection
-from app.retrieval import search
+from app.retrieval import get_filter_options, search
 from app.sessions import (
     append_message,
     ensure_session,
@@ -52,11 +52,12 @@ async def chat_endpoint(request: Request):
     body = await request.json()
     session_id = body.get("session_id") or str(uuid.uuid4())
     message = body["message"]
+    filters = body.get("filters")
 
     conn = get_db_connection()
     ensure_session(conn, session_id)
     history = get_messages(conn, session_id)
-    candidates = search(conn, message)
+    candidates = search(conn, message, filters=filters)
     try:
         reply = get_reply(history, message, candidates)
     except Exception:
@@ -82,6 +83,12 @@ async def chat_endpoint(request: Request):
             for c in candidates
         ],
     })
+
+
+@app.get("/api/filters/options")
+async def filters_options_endpoint():
+    conn = get_db_connection()
+    return JSONResponse(get_filter_options(conn))
 
 
 @app.get("/api/sessions")

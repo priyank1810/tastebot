@@ -110,6 +110,40 @@ def test_session_messages_endpoint_returns_history(monkeypatch, fake_store):
     assert roles == ["user", "assistant"]
 
 
+def test_chat_endpoint_forwards_filters_to_search(monkeypatch, fake_store):
+    captured = {}
+
+    def capturing_search(conn, message, top_k=6, filters=None):
+        captured["filters"] = filters
+        return fake_search(conn, message, top_k, filters)
+
+    monkeypatch.setattr(main_module, "search", capturing_search)
+    monkeypatch.setattr(main_module, "get_reply", fake_get_reply)
+
+    client = TestClient(main_module.app)
+    client.post(
+        "/api/chat",
+        json={"session_id": "s5", "message": "hi", "filters": {"cuisine": ["italian"]}},
+    )
+
+    assert captured["filters"] == {"cuisine": ["italian"]}
+
+
+def test_filters_options_endpoint(monkeypatch, fake_store):
+    def fake_get_filter_options(conn):
+        return {"cuisine": ["italian"], "budget": ["mid"], "location": ["downtown"], "dietary_tags": ["vegan"]}
+
+    monkeypatch.setattr(main_module, "get_filter_options", fake_get_filter_options)
+
+    client = TestClient(main_module.app)
+    resp = client.get("/api/filters/options")
+
+    assert resp.status_code == 200
+    assert resp.json() == {
+        "cuisine": ["italian"], "budget": ["mid"], "location": ["downtown"], "dietary_tags": ["vegan"],
+    }
+
+
 def test_startup_fails_fast_without_api_key(monkeypatch):
     monkeypatch.setattr(main_module.settings, "azure_openai_api_key", None)
     monkeypatch.setattr(main_module, "get_db_connection", lambda: None)
