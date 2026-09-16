@@ -1,0 +1,5 @@
+name,cuisine,budget,location,dietary_tags,description,rating
+Virasat - E - Curry,north_indian,mid,bodakdev,vegetarian;non_vegetarian,North Indian and biryani restaurant in Bodakdev.,4.6
+Punjab Grill,north_indian,premium,thaltej,vegetarian;non_vegetarian,North Indian kebab and biryani restaurant in Thaltej.,4.5
+Pol 21 - Hotel Binori,multi_cuisine,mid,thaltej,vegetarian;non_vegetarian,North Indian and Chinese restaurant at Hotel Binori in Thaltej.,4.0
+Hive,multi_cuisine,mid,bodakdev,vegetarian;non_vegetarian,North Indian and Continental restaurant in Bodakdev.,4.1

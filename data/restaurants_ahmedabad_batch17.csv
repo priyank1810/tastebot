@@ -1,0 +1,20 @@
+name,cuisine,budget,location,dietary_tags,description,rating
+Hella Good Pizzeria,pizza,premium,bodakdev,vegetarian;non_vegetarian,Pizza and beverages restaurant in Bodakdev.,4.4
+The Theory Of Nine,cafe,premium,bodakdev,vegetarian;non_vegetarian,Cafe in Bodakdev serving coffee Italian and Chinese dishes.,4.3
+Roastery Cultur - The Coffee Co,cafe,premium,bodakdev,vegetarian;non_vegetarian,Coffee-focused cafe in Bodakdev serving fast food and Italian dishes.,4.6
+Royal Vega - ITC Narmada,gujarati,premium,vastrapur,vegetarian;non_vegetarian,Gujarati restaurant at ITC Narmada in Vastrapur.,4.5
+Collage - Hyatt,multi_cuisine,premium,vastrapur,vegetarian;non_vegetarian,South Indian and Continental restaurant at Hyatt in Vastrapur.,4.2
+Peshawri - ITC Narmada,north_indian,premium,vastrapur,vegetarian;non_vegetarian,North Indian restaurant at ITC Narmada in Vastrapur known for desserts.,4.4
+Sam's Pizza,pizza,mid,ambavadi,vegetarian;non_vegetarian,Pizza and fast food restaurant in Ambavadi.,4.3
+Mocha,italian,premium,gulbai_tekra,vegetarian;non_vegetarian,Italian restaurant in Gulbai Tekra serving pizza and momos.,4.2
+Khichdi Etc,north_indian,mid,navrangpura,vegetarian;non_vegetarian,North Indian restaurant in Navrangpura specializing in khichdi.,4.5
+Crush Coffee,cafe,mid,cg_road,vegetarian;non_vegetarian,Coffee cafe on C G Road serving healthy food and pizza.,4.4
+Cellad Eatery,multi_cuisine,premium,gulbai_tekra,vegetarian;non_vegetarian,North Indian Mexican and Italian restaurant in Gulbai Tekra.,4.1
+The Asian Affairs,multi_cuisine,premium,vastrapur,vegetarian;non_vegetarian,Asian restaurant in Vastrapur serving Chinese and Japanese dishes.,3.7
+Cafe De Italiano,cafe,premium,bodakdev,vegetarian;non_vegetarian,Cafe in Bodakdev serving Italian North Indian and Oriental dishes.,4.0
+Daksheen Narmada,south_indian,mid,bodakdev,vegetarian;non_vegetarian,South Indian restaurant in Bodakdev serving tea.,3.2
+Si Nonna's - The Original Sourdough,italian,premium,bodakdev,vegetarian;non_vegetarian,Italian sourdough pizza restaurant in Bodakdev serving desserts and coffee.,4.3
+Sadak Chaap,north_indian,mid,prahladnagar,vegetarian;non_vegetarian,North Indian restaurant in Prahladnagar serving biryani and beverages.,4.3
+Infine,continental,premium,sarkhej,vegetarian;non_vegetarian,European restaurant in Sarkhej serving beverages.,4.4
+Amritsar Haveli,multi_cuisine,mid,prahladnagar,vegetarian;non_vegetarian,North Indian and Chinese restaurant in Prahladnagar.,3.9
+OOROO Cafe,south_indian,mid,satellite,vegetarian;non_vegetarian,South Indian fast food cafe in Satellite.,4.3
