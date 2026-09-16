@@ -1,0 +1,19 @@
+name,cuisine,budget,location,dietary_tags,description,rating
+1944 The Hocco Kitchen,multi_cuisine,mid,chandkheda,vegetarian;non_vegetarian,Restaurant in Chandkheda serving North Indian Italian Chinese ice cream and desserts.,4.5
+The Vibe-X Restro & Cafe,multi_cuisine,mid,chandkheda,vegetarian;non_vegetarian,Restro-cafe in Chandkheda serving North Indian Oriental Mexican Continental BBQ and Korean dishes.,4.4
+The Shake Maker,fast_food,budget,chandkheda,vegetarian;non_vegetarian,Fast-food outlet in Chandkheda serving shakes sandwiches pizza and desserts.,3.7
+The Soraa- A Rooftop Restro Cafe,cafe,mid,nikol,vegetarian;non_vegetarian,Rooftop restro-cafe in Nikol serving North Indian Chinese Italian and biryani dishes.,4.3
+Pie Are Square Pizza,pizza,mid,naroda,vegetarian;non_vegetarian,Pizza and pasta restaurant in Naroda.,4.6
+Dakshin Bhojnam,south_indian,budget,nikol,vegetarian,South Indian restaurant in Nikol.,4.3
+Starry Nights,multi_cuisine,budget,naroda,vegetarian;non_vegetarian,Restaurant in Naroda serving North Indian Chinese pizza and biryani.,4.1
+Saras Che!,gujarati,mid,naroda,vegetarian,Gujarati restaurant in Naroda known for mithai and ice cream alongside North Indian dishes.,4.2
+Drizzl's Pizza,pizza,budget,nikol,vegetarian;non_vegetarian,Pizza and fast-food outlet in Nikol.,3.1
+Brick Kitchen - Five Petals,multi_cuisine,mid,ghatlodia,vegetarian;non_vegetarian,Restaurant in Ghatlodia serving North Indian Continental and Oriental dishes with salads and desserts.,4.4
+The Fountain,continental,mid,chandkheda,vegetarian;non_vegetarian,Continental and North Indian restaurant in Chandkheda.,4.3
+EL'Olivo,cafe,mid,navrangpura,vegetarian;non_vegetarian,Pizza and coffee cafe in Navrangpura serving Italian dishes and tea.,4.3
+Regenta Inn Ranip by Royal Orchid Hotels,multi_cuisine,mid,ranip,vegetarian;non_vegetarian,Hotel restaurant in Ranip serving North Indian Mughlai and Continental dishes.,4.2
+Hocco Kitchen,multi_cuisine,mid,vaishnodevi_circle,vegetarian;non_vegetarian,Restaurant at Vaishnodevi Circle serving North Indian Chinese Italian pizza ice cream and desserts.,4.4
+Taste Of Heaven,north_indian,mid,adalaj,vegetarian;non_vegetarian,North Indian and Asian restaurant in Adalaj.,4.3
+The Barnyard Co,multi_cuisine,mid,chandkheda,vegetarian;non_vegetarian,Restaurant in Chandkheda serving North Indian and Italian dishes with desserts and beverages.,3.6
+Pihu Baug,chinese,premium,gota,vegetarian;non_vegetarian,Chinese restaurant in Gota serving desserts and beverages.,4.3
+Brooks,north_indian,premium,adalaj,vegetarian;non_vegetarian,North Indian restaurant in Adalaj.,4.2
