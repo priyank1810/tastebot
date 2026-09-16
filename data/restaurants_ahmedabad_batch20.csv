@@ -1,0 +1,14 @@
+name,cuisine,budget,location,dietary_tags,description,rating
+Bon Homie,north_indian,mid,paldi,vegetarian;non_vegetarian,Restaurant in Paldi serving North Indian and Chinese dishes.,4.1
+Chinese Wok,chinese,budget,maninagar,vegetarian;non_vegetarian,Chinese and Asian restaurant in Maninagar known for momos.,3.8
+Bombay Darbar Biryani,biryani,budget,rakhial,non_vegetarian,Biryani and North Indian restaurant in Rakhial.,3.9
+Anwar E Hilal,mughlai,mid,jamalpur,vegetarian;non_vegetarian,Restaurant in Jamalpur serving Chinese North Indian biryani and Mughlai dishes.,3.8
+May Flower - Hotel The Westend,multi_cuisine,mid,ellisbridge,vegetarian;non_vegetarian,Restaurant at Hotel The Westend in Ellis Bridge serving North Indian Chinese Continental and biryani.,4.2
+Kabhi B - Bakery & Cafe,bakery,mid,maninagar,vegetarian,Bakery and cafe in Maninagar serving desserts beverages and cakes.,
+Aayu-The South Cafe,south_indian,budget,ellisbridge,vegetarian,South Indian cafe in Ellis Bridge serving desserts and beverages.,4.3
+The Bent Spoon,multi_cuisine,mid,ellisbridge,vegetarian;non_vegetarian,Restaurant in Ellis Bridge serving North Indian Gujarati Continental Pizza Chinese and Thai dishes.,3.5
+The Trophy,multi_cuisine,premium,prahladnagar,vegetarian;non_vegetarian,Restaurant in Prahladnagar serving North Indian Mughlai Continental biryani and Mexican dishes.,4.6
+The Nine Restaurant,multi_cuisine,mid,prahladnagar,vegetarian;non_vegetarian,Restaurant in Prahladnagar serving Chinese North Indian Thai South Indian and seafood dishes.,4.4
+The Penthouse Chapter One By Novelchef,multi_cuisine,premium,prahladnagar,vegetarian;non_vegetarian,Restaurant in Prahladnagar serving North Indian sandwiches burgers Chinese and desserts.,4.2
+Mahamahal,multi_cuisine,mid,thaltej,vegetarian;non_vegetarian,Restaurant in Thaltej serving North Indian Gujarati Italian Thai Chinese South Indian and Mexican dishes.,3.8
+Cafe Patio - Hotel Binori,cafe,mid,thaltej,vegetarian;non_vegetarian,Cafe at Hotel Binori in Thaltej serving North Indian fast food Chinese and desserts.,4.3
