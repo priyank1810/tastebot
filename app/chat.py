@@ -1,4 +1,4 @@
-from anthropic import Anthropic
+from openai import AzureOpenAI
 
 from app.config import settings
 from app.retrieval import RetrievedRestaurant
@@ -30,15 +30,20 @@ def get_reply(
     candidates: list[RetrievedRestaurant],
     client=None,
 ) -> str:
-    client = client or Anthropic(api_key=settings.anthropic_api_key)
+    client = client or AzureOpenAI(
+        api_key=settings.azure_openai_api_key,
+        azure_endpoint=settings.azure_openai_endpoint,
+        api_version=settings.azure_openai_api_version,
+    )
     context = build_context(candidates)
-    messages = history + [
-        {"role": "user", "content": f"{context}\n\nUser: {user_message}"}
-    ]
-    response = client.messages.create(
-        model="claude-sonnet-5",
+    messages = (
+        [{"role": "system", "content": SYSTEM_PROMPT}]
+        + history
+        + [{"role": "user", "content": f"{context}\n\nUser: {user_message}"}]
+    )
+    response = client.chat.completions.create(
+        model=settings.azure_openai_deployment,
         max_tokens=500,
-        system=SYSTEM_PROMPT,
         messages=messages,
     )
-    return response.content[0].text
+    return response.choices[0].message.content

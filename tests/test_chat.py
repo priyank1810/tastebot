@@ -24,25 +24,35 @@ def test_build_context_empty_candidates():
     assert "none found" in context
 
 
-class FakeTextBlock:
-    def __init__(self, text):
-        self.text = text
+class FakeMessage:
+    def __init__(self, content):
+        self.content = content
+
+
+class FakeChoice:
+    def __init__(self, content):
+        self.message = FakeMessage(content)
 
 
 class FakeResponse:
     def __init__(self, text):
-        self.content = [FakeTextBlock(text)]
+        self.choices = [FakeChoice(text)]
 
 
-class FakeMessages:
+class FakeCompletions:
     def create(self, **kwargs):
         assert "CANDIDATES" in kwargs["messages"][-1]["content"]
         return FakeResponse("I recommend Pasta Palace.")
 
 
+class FakeChat:
+    def __init__(self):
+        self.completions = FakeCompletions()
+
+
 class FakeClient:
     def __init__(self):
-        self.messages = FakeMessages()
+        self.chat = FakeChat()
 
 
 def test_get_reply_uses_context_and_client():
