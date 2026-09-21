@@ -1,5 +1,19 @@
+import L from 'leaflet'
+import 'leaflet/dist/leaflet.css'
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import { RestaurantCandidate } from '../../api/client'
+import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png'
+import markerIcon from 'leaflet/dist/images/marker-icon.png'
+import markerShadow from 'leaflet/dist/images/marker-shadow.png'
+
+// Vite doesn't resolve Leaflet's default icon URLs (they assume a bundler
+// that keeps images next to the CSS), so markers render broken without this.
+delete (L.Icon.Default.prototype as { _getIconUrl?: unknown })._getIconUrl
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: markerIcon2x,
+  iconUrl: markerIcon,
+  shadowUrl: markerShadow,
+})
 
 type GeocodedCandidate = RestaurantCandidate & { lat: number; lon: number }
 
