@@ -53,7 +53,7 @@ export default function App() {
       <SessionProvider>
         <FiltersProvider>
           <div className="flex h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100">
-            <aside className="w-64 border-r border-slate-200 dark:border-slate-700 flex flex-col">
+            <aside className="w-64 h-screen overflow-y-auto border-r border-slate-200 dark:border-slate-700 flex flex-col">
               <SessionList />
               <FilterPanel />
             </aside>
