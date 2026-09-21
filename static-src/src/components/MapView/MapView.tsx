@@ -17,7 +17,13 @@ L.Icon.Default.mergeOptions({
 
 type GeocodedCandidate = RestaurantCandidate & { lat: number; lon: number }
 
-export function MapView({ candidates }: { candidates: RestaurantCandidate[] }) {
+export function MapView({
+  candidates,
+  onClose,
+}: {
+  candidates: RestaurantCandidate[]
+  onClose: () => void
+}) {
   const pins = candidates.filter(
     (c): c is GeocodedCandidate => c.lat != null && c.lon != null,
   )
@@ -27,7 +33,14 @@ export function MapView({ candidates }: { candidates: RestaurantCandidate[] }) {
   const bounds: [number, number][] = pins.map((p) => [p.lat, p.lon])
 
   return (
-    <div className="h-64 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700">
+    <div className="relative h-64 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700">
+      <button
+        onClick={onClose}
+        aria-label="Close map"
+        className="absolute top-2 right-2 z-[1000] w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
+      >
+        ×
+      </button>
       <MapContainer
         bounds={bounds}
         boundsOptions={{ padding: [20, 20], maxZoom: 15 }}

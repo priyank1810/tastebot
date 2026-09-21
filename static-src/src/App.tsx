@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { ErrorBanner } from './components/Chat/ErrorBanner'
 import { ChatInput } from './components/Chat/ChatInput'
 import { MessageList } from './components/Chat/MessageList'
@@ -15,6 +16,13 @@ function ChatArea() {
   const { theme, toggleTheme } = useTheme()
 
   const lastWithCandidates = [...messages].reverse().find((m) => m.candidates && m.candidates.length > 0)
+  const [mapClosed, setMapClosed] = useState(false)
+
+  // A new answer with its own candidates should show its map again,
+  // even if the user closed the map for a previous answer.
+  useEffect(() => {
+    setMapClosed(false)
+  }, [lastWithCandidates])
 
   return (
     <div className="flex flex-col flex-1 h-screen">
@@ -30,7 +38,9 @@ function ChatArea() {
           <TypingIndicator />
         </div>
       )}
-      {lastWithCandidates?.candidates && <MapView candidates={lastWithCandidates.candidates} />}
+      {lastWithCandidates?.candidates && !mapClosed && (
+        <MapView candidates={lastWithCandidates.candidates} onClose={() => setMapClosed(true)} />
+      )}
       {error && <ErrorBanner message={error} onRetry={retryLast} />}
       <ChatInput onSend={(text) => sendMessage(text, selected)} disabled={sending} />
     </div>
