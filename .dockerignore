@@ -1,0 +1,11 @@
+.git
+.venv
+.pytest_cache
+.worktrees
+static-src/node_modules
+static/dist
+data
+docs
+tests
+*.md
+.env

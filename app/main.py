@@ -2,7 +2,7 @@ import logging
 import uuid
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -16,7 +16,24 @@ from app.sessions import (
     get_messages,
     init_session_schema,
     list_sessions,
+    session_owner,
 )
+
+OWNER_COOKIE = "uid"
+
+
+def get_owner_id(request: Request) -> str:
+    return request.cookies.get(OWNER_COOKIE) or str(uuid.uuid4())
+
+
+def set_owner_cookie(response: JSONResponse, owner_id: str) -> None:
+    response.set_cookie(
+        OWNER_COOKIE,
+        owner_id,
+        max_age=60 * 60 * 24 * 365,
+        httponly=True,
+        samesite="lax",
+    )
 
 logger = logging.getLogger(__name__)
 
@@ -52,11 +69,17 @@ app = FastAPI(lifespan=lifespan)
 async def chat_endpoint(request: Request):
     body = await request.json()
     session_id = body.get("session_id") or str(uuid.uuid4())
-    message = body["message"]
+    message = body.get("message")
+    if not message:
+        raise HTTPException(status_code=400, detail="message is required")
     filters = body.get("filters")
+    owner_id = get_owner_id(request)
 
     conn = get_db_connection()
-    ensure_session(conn, session_id)
+    existing_owner = session_owner(conn, session_id)
+    if existing_owner is not None and existing_owner != owner_id:
+        raise HTTPException(status_code=404, detail="session not found")
+    ensure_session(conn, session_id, owner_id)
     history = get_messages(conn, session_id)
     candidates = search(conn, message, filters=filters)
     try:
@@ -70,7 +93,7 @@ async def chat_endpoint(request: Request):
     append_message(conn, session_id, "user", message)
     append_message(conn, session_id, "assistant", reply)
 
-    return JSONResponse({
+    response = JSONResponse({
         "session_id": session_id,
         "reply": reply,
         "candidates": [
@@ -86,6 +109,8 @@ async def chat_endpoint(request: Request):
             for c in candidates
         ],
     })
+    set_owner_cookie(response, owner_id)
+    return response
 
 
 @app.get("/api/filters/options")
@@ -95,14 +120,20 @@ async def filters_options_endpoint():
 
 
 @app.get("/api/sessions")
-async def sessions_endpoint():
+async def sessions_endpoint(request: Request):
+    owner_id = request.cookies.get(OWNER_COOKIE)
+    if owner_id is None:
+        return JSONResponse([])
     conn = get_db_connection()
-    return JSONResponse(list_sessions(conn))
+    return JSONResponse(list_sessions(conn, owner_id))
 
 
 @app.get("/api/sessions/{session_id}")
-async def session_messages_endpoint(session_id: str):
+async def session_messages_endpoint(session_id: str, request: Request):
+    owner_id = request.cookies.get(OWNER_COOKIE)
     conn = get_db_connection()
+    if owner_id is None or session_owner(conn, session_id) != owner_id:
+        raise HTTPException(status_code=404, detail="session not found")
     return JSONResponse(get_messages(conn, session_id))
 
 
